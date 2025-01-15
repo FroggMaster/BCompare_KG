@@ -46,7 +46,7 @@ Max users: 1
 
 将脚本生成的注册密钥粘贴到输入框中，点击 `确定` 即可激活。
 
-<img src="/Users/charles/Documents/GitHub/BCompare_Keygen/asserts/04.png" alt="image-20240902172404873" style="zoom:40%;" /> 
+<img src="asserts/04.png" alt="image-20240902172404873" style="zoom:40%;" /> 
 
 <img src="asserts/05.png" alt="image-20240902172829613" style="zoom:50%;" /> 
 
