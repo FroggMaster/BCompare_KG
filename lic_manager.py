@@ -1,7 +1,7 @@
 import os
 import re
 import base58
-from typing import Literal
+from typing_extensions import Literal
 from Crypto.Util.number import bytes_to_long
 from Crypto.Util.Padding import pad
 from const import LicType
