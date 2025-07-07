@@ -111,8 +111,8 @@ class LicenseDecoder:
         self.data = int_to_bytes(raw_lic_data)
 
     def dec_org(self) -> (int, str):
-        pre_uname = b'\x0573051'
-        pre_idx = self.data.index(pre_uname) + len(pre_uname) + 1
+        pre_organization = b'\x0573051'
+        pre_idx = self.data.index(pre_organization) + len(pre_organization) + 1
         tmp_data = self.data[pre_idx:]
 
         post_uname = b'\x06'
@@ -122,8 +122,8 @@ class LicenseDecoder:
         return int(num), atsite
 
     def dec_version(self) -> str:
-        pre_uname = b'\x06'
-        pre_idx = self.data.index(pre_uname) + len(pre_uname)
+        pre_version = b'\x06'
+        pre_idx = self.data.index(pre_version) + len(pre_version)
         tmp_data = self.data[pre_idx:]
         ver = bytes_to_long(tmp_data[:1])
         self.data = tmp_data
