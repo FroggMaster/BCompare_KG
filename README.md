@@ -1,5 +1,5 @@
 # Beyond Compare 5 Keygen
-用于生成 Beyond Compare 5.x （截至 5.1 ver 31016）版本注册密钥
+基于 Python3 编写，用于生成 Beyond Compare 5.x （截至 5.1 ver 31016）版本注册密钥
 ## 前置工作
 使用 010Editor 等二进制工具，修改 Beyond Compare 可执行文件中内置的 RSA 密钥
 
@@ -19,6 +19,30 @@
 git clone https://github.com/garfield-ts/BCompare_Keygen.git
 cd BCompare_Keygen
 pip3 install -r requirements.txt
+# 对于 Python 3.7 及更早版本，需要手动安装 typing_extensions 模块
+pip3 install typing_extensions==4.7.1
+```
+### 基于 Web 页面生成注册密钥
+```shell
+python3 app.py
+```
+<img src="./asserts/08.png" alt="image-20250707160150740" /> 
+
+启动服务后访问 http://localhost:8000/ 即可看到相应页面，该页面由 AI 自动生成。
+
+<img src="./asserts/09.png" alt="image-20250707160652595" style="zoom:67%;" /> 
+
+点击 `生成密钥` 即可按照填写的参数生成注册密钥，点击 `复制` 按钮可将生成的密钥复制到剪贴板中。
+
+<img src="./asserts/10.png" alt="image-20250707160933288" style="zoom:67%;" /> 
+
+在页面底部还会展示注册密钥对应的详细参数，供研究学习使用。
+
+<img src="./asserts/11.png" alt="image-20250707161229638" style="zoom:67%;" /> 
+
+### 基于命令行生成注册密钥
+
+```shell
 python3 keygen.py
 ```
 得到可用的注册密钥：
