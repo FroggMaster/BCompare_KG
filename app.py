@@ -79,7 +79,7 @@ async def get_bcom_js():
             </div>
             <button class="copy-btn" onclick="copyToClipboard()">复制</button>
             <p><strong>状态:</strong> ${data.msg}</p>
-            <h4>提交的数据:</h4>
+            <h4>密钥解析数据:</h4>
             <ul class="data-list">
                 <li><strong>版本:</strong> ${data.key_data.version}</li>
                 <li><strong>用户名:</strong> ${data.key_data.username}</li>
@@ -216,7 +216,7 @@ async def get_bcom_css():
     return HTMLResponse(content=css_content, media_type="text/css")
 
 
-@app.get("/BComKeyGenerator", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 async def get_bcom_key_generator_page():
     html_content = """
     <!DOCTYPE html>
