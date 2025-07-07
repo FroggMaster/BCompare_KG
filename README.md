@@ -1,5 +1,5 @@
 # Beyond Compare 5 Keygen
-用于生成 Beyond Compare 5.x 版本注册密钥
+用于生成 Beyond Compare 5.x （截至 5.1 ver 31016）版本注册密钥
 ## 前置工作
 使用 010Editor 等二进制工具，修改 Beyond Compare 可执行文件中内置的 RSA 密钥
 
@@ -49,6 +49,16 @@ Max users: 1
 <img src="asserts/04.png" alt="image-20240902172404873" style="zoom:40%;" /> 
 
 <img src="asserts/05.png" alt="image-20240902172829613" style="zoom:50%;" /> 
+
+## 注意事项
+
+1. 在 `macOS` 版中，RSA 密钥位于 `/Applications/Beyond Compare.app/Contents/MacOS/BCompare` 文件中；在 `Windows` 版中，RSA 密钥位于 `BCompare.exe` 文件中
+
+2. `macOS` 版修改密钥后，需要关闭操作系统的 `SIP（System Integrity Protection，系统完整性保护）` 功能，否则会报错「**“Beyond Compare”意外退出**」且无法运行，详见 [少数派的这篇文章](https://sspai.com/post/55066) 。
+
+3. 在 `macOS` 版中，`BCompare` 文件里可以搜到 2 个 RSA 密钥，实际要修改的是第二处密钥。`Windows` 版只有 1 处密钥，直接修改即可。
+
+   <img src="asserts/07.png" alt="image-20250707104436903" style="zoom:100%;" /> 
 
 ## TODO
 
