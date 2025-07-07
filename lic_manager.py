@@ -1,12 +1,21 @@
 import os
 import re
 import base58
-from typing_extensions import Literal
 from Crypto.Util.number import bytes_to_long
 from Crypto.Util.Padding import pad
 from const import LicType
 from rsa_key import RsaKeyInfo
 
+try:
+    from typing import Literal
+except ImportError:
+    print("Import 'Literal' from 'typing' failed, maybe using python 3.7 or lower.\nTry 'typing_extensions' instead.")
+    try:
+        from typing_extensions import Literal
+    except ImportError:
+        print(
+            "Cannot import 'Literal'. Please install typing_extensions by running 'pip install typing_extensions==4.7.1'.")
+        raise ImportError("Cannot import 'Literal'")
 
 RSA_KEY = RsaKeyInfo()
 
