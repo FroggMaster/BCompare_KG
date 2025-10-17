@@ -23,6 +23,7 @@ git clone https://github.com/garfield-ts/BCompare_Keygen.git
 cd BCompare_Keygen
 pip3 install -r requirements.txt
 # For Python 3.7 and earlier, manually install typing_extensions
+# DO NOT DO THIS IF YOU'RE USING A NEWER VERSION OF PYTHON
 pip3 install typing_extensions==4.7.1
 ```
 
