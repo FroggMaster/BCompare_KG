@@ -9,9 +9,9 @@ app = FastAPI()
 
 
 class KeyRequest(BaseModel):
-    username: str = "Test"
-    organization: str = "Test Studio"
-    serial_number: str = "Abcd-1234"
+    username: str = "ILikeFrogs"
+    organization: str = "Ribbit Company"
+    serial_number: str = "Frog-Cool"
     quantity: int = 1
 
     def __str__(self):
@@ -36,7 +36,7 @@ async def get_bcom_js():
         }
 
         if (quantity <= 0 || !Number.isInteger(Number(quantity))) {
-            errorElement.textContent = '请输入有效的正整数';
+            errorElement.textContent = 'Please enter a valid positive integer.';
             return false;
         } else {
             errorElement.textContent = '';
@@ -46,9 +46,9 @@ async def get_bcom_js():
 
     function getFormData() {
         return {
-            username: document.getElementById('username').value || "Test",
-            organization: document.getElementById('organization').value || "Test Studio",
-            serial_number: document.getElementById('serial_number').value || "Abcd-1234",
+            username: document.getElementById('username').value || "ILikeFrogs",
+            organization: document.getElementById('organization').value || "Ribbit Company",
+            serial_number: document.getElementById('serial_number').value || "Frog-Cool",
             quantity: parseInt(document.getElementById('quantity').value) || 1
         };
     }
@@ -56,15 +56,15 @@ async def get_bcom_js():
     function copyToClipboard() {
         text = document.getElementById('keyValue').innerHTML.replaceAll('<br>', '\\r\\n');
         navigator.clipboard.writeText(text).then(() => {
-            alert('密钥已复制到剪贴板');
+            alert('The key has been copied to the clipboard.');
         }).catch(err => {
-            console.error('复制失败: ', err);
+            console.error('Copy failed: ', err);
         });
     }
     
     function displayError(error) {
         if (error != null) { console.error('Error:', error); }
-        document.getElementById('result').innerHTML = '<p style="color:red;">生成密钥时出错，请重试。</p>';
+        document.getElementById('result').innerHTML = '<p style="color:red;">Error generating key, please try again.</p>';
     }
     
     function updateKeyDetail(data) {
@@ -73,20 +73,20 @@ async def get_bcom_js():
         if (data == null) { displayError(); return; }
         if (data.code != 0) { document.getElementById('result').innerHTML = `<p style="color:red;">${data.msg}</p>`; return; }
         resultDiv.innerHTML = `
-            <h3>生成结果</h3>
+            <h3>Generation Result</h3>
             <div class="key-result">
                 <span id="keyValue">${data.key}</span>                
             </div>
-            <button class="copy-btn" onclick="copyToClipboard()">复制</button>
-            <p><strong>状态:</strong> ${data.msg}</p>
-            <h4>密钥解析数据:</h4>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+            <p><strong>Status:</strong> ${data.msg}</p>
+            <h4>Decoded Key Data:</h4>
             <ul class="data-list">
-                <li><strong>版本:</strong> ${data.key_data.version}</li>
-                <li><strong>用户名:</strong> ${data.key_data.username}</li>
-                <li><strong>组织名:</strong> ${data.key_data.organization}</li>
-                <li><strong>序列号:</strong> ${data.key_data.serial_number}</li>
-                <li><strong>数量:</strong> ${data.key_data.quantity}</li>
-                <li><strong>随机值:</strong> ${data.key_data.random}</li>
+                <li><strong>Version:</strong> ${data.key_data.version}</li>
+                <li><strong>Username:</strong> ${data.key_data.username}</li>
+                <li><strong>Organization:</strong> ${data.key_data.organization}</li>
+                <li><strong>Serial Number:</strong> ${data.key_data.serial_number}</li>
+                <li><strong>Quantity:</strong> ${data.key_data.quantity}</li>
+                <li><strong>Random Value:</strong> ${data.key_data.random}</li>
             </ul>
         `;
         return;
@@ -226,35 +226,35 @@ async def get_bcom_key_generator_page():
         <link rel="stylesheet" href="/css/bcom.css">
     </head>
     <body>
-        <h1>密钥生成器</h1>
+        <h1>Key Generator</h1>
         <div class="container">
             <form id="keyForm">
                 <div class="form-group">
-                    <label for="username">用户名:</label>
-                    <input type="text" id="username" name="username" value="Test">
-                    <div class="default-value">默认值: Test</div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" value="ILikeFrogs">
+                    <div class="default-value">Default: ILikeFrogs</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="organization">组织名:</label>
-                    <input type="text" id="organization" name="organization" value="Test Studio">
-                    <div class="default-value">默认值: Test Studio</div>
+                    <label for="organization">Organization:</label>
+                    <input type="text" id="organization" name="organization" value="Ribbit Company">
+                    <div class="default-value">Default: Ribbit Company</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="serial_number">序列号:</label>
-                    <input type="text" id="serial_number" name="serial_number" value="Abcd-1234">
-                    <div class="default-value">默认值: Abcd-1234</div>
+                    <label for="serial_number">Serial Number:</label>
+                    <input type="text" id="serial_number" name="serial_number" value="Frog-Cool">
+                    <div class="default-value">Default: Frog-Cool</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity">数量 (正整数):</label>
+                    <label for="quantity">Max Users:</label>
                     <input type="number" id="quantity" name="quantity" min="1" step="1" value="1">
-                    <div class="default-value">默认值: 1</div>
+                    <div class="default-value">Default: 1</div>
                     <div id="quantityError" class="error"></div>
                 </div>
 
-                <button type="button" onclick="generateKey()">生成密钥</button>
+                <button type="button" onclick="generateKey()">Generate Key</button>
             </form>
 
             <div id="result"></div>
@@ -273,13 +273,17 @@ async def gen_bcom_key(req: KeyRequest):
     if not check_serial(serial_num):
         return {
             "code": -1,
-            "msg": "序列号格式错误",
+            "msg": "Invalid serial number format",
             "key": "",
-            "key_data": None
+            "key_data": None,
         }
 
-    key = LicenseEncoder(username=req.username, atsite=req.organization, user_num=req.quantity,
-                         serial_num=req.serial_number).encode()
+    key = LicenseEncoder(
+        username=req.username,
+        atsite=req.organization,
+        user_num=req.quantity,
+        serial_num=req.serial_number,
+    ).encode()
     dec = LicenseDecoder(key)
     num, atsite = dec.dec_org()
     version = dec.dec_version()
@@ -297,8 +301,8 @@ async def gen_bcom_key(req: KeyRequest):
             "organization": atsite,
             "serial_number": serial_num,
             "quantity": num,
-            "random": rand
-        }
+            "random": rand,
+        },
     }
 
 
